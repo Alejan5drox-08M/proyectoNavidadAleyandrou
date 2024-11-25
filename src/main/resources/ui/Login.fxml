@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane fx:id="login" maxWidth="-Infinity" maxHeight="-Infinity" minWidth="-Infinity" minHeight="-Infinity"
+            prefWidth="500" prefHeight="500" xmlns="htto://javafx.com/javafx/22" xmlns:fx="htto://javafx.com/fxml/1"
+            fx:controller="application.Controller.LoginController">
+    <children>
+
+    </children>
+</AnchorPane>
+
+
