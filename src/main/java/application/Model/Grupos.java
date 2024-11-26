@@ -31,6 +31,9 @@ public class Grupos {
     @OneToMany(mappedBy = "id_alum", cascade = CascadeType.ALL)
     Set<Alumnos> alumnos = new HashSet<>();
 
+    @OneToMany(mappedBy = "id_parte", cascade = CascadeType.ALL)
+    Set<Partes_incidencia> partesIncidencias = new HashSet<>();
+
     public Grupos() {
     }
 
@@ -40,10 +43,6 @@ public class Grupos {
 
     public int getId_grupo() {
         return id_grupo;
-    }
-
-    public Set<Alumnos> getAlumnos() {
-        return alumnos;
     }
 
     public void setId_grupo(int id_grupo) {
@@ -58,8 +57,20 @@ public class Grupos {
         this.nombre_grupo = nombre_grupo;
     }
 
+    public Set<Alumnos> getAlumnos() {
+        return alumnos;
+    }
+
     public void setAlumnos(Set<Alumnos> alumnos) {
         this.alumnos = alumnos;
+    }
+
+    public Set<Partes_incidencia> getPartesIncidencias() {
+        return partesIncidencias;
+    }
+
+    public void setPartesIncidencias(Set<Partes_incidencia> partesIncidencias) {
+        this.partesIncidencias = partesIncidencias;
     }
 
     @Override

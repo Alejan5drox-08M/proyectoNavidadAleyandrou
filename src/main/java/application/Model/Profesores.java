@@ -1,6 +1,8 @@
 package application.Model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 DROP TABLE IF EXISTS `gestionpartes`.`profesores`;
@@ -37,6 +39,10 @@ public class Profesores {
 
     @Column(name = "tipo")
     private String tipo;
+
+
+    @OneToMany(mappedBy = "id_parte", cascade = CascadeType.ALL)
+    Set<Partes_incidencia> partesIncidencias = new HashSet<>();
 
     public Profesores() {
     }
@@ -86,6 +92,14 @@ public class Profesores {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Set<Partes_incidencia> getPartesIncidencias() {
+        return partesIncidencias;
+    }
+
+    public void setPartesIncidencias(Set<Partes_incidencia> partesIncidencias) {
+        this.partesIncidencias = partesIncidencias;
     }
 
     @Override

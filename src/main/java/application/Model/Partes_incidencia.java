@@ -55,13 +55,31 @@ public class Partes_incidencia {
     private int id_parte;
 
     @ManyToOne
+    @JoinColumn(name = "id_alum", referencedColumnName = "id_alum")
     private Alumnos id_alum;
+
+    @ManyToOne
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id_grupo")
     private Grupos id_grupo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")
     private Profesores id_profesor;
+
+    @ManyToOne
+    @JoinColumn(name = "punt_partes", referencedColumnName = "punt_partes")
     private Puntuacion_partes punt_partes;
+
+    @Column(name = "descripcion")
     private String descripcion;
+
+    @Column(name = "fecha")
     private String fecha;
+
+    @Column(name = "hora")
     private String hora;
+
+    @Column(name = "sancion")
     private String sancion;
 
     public Partes_incidencia() {

@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="login" maxWidth="-Infinity" maxHeight="-Infinity" minWidth="-Infinity" minHeight="-Infinity"
-            prefWidth="500" prefHeight="500" xmlns="htto://javafx.com/javafx/22" xmlns:fx="htto://javafx.com/fxml/1"
-            fx:controller="application.Controller.InicioSesionController">
-    <children>
+<?import javafx.scene.text.Font?>
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0"
+            prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/22"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.InicioSesionController">
+    <children>
+        <ImageView fitHeight="623.0" fitWidth="645.0" layoutX="163.0" layoutY="-5.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@/images/logo.png"/>
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="277.0" layoutY="147.0" prefHeight="320.0" prefWidth="395.0"
+                    style="-fx-background-color: white; -fx-background-radius: 20;">
+            <children>
+                <Label layoutX="76.0" layoutY="24.0" text=" Inicio de Sesión">
+                    <font>
+                        <Font size="34.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="26.0" layoutY="93.0" text="Número Asignado:">
+                    <font>
+                        <Font size="17.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="NumeroAsignadoText" layoutX="24.0" layoutY="124.0" prefHeight="35.0" prefWidth="348.0"
+                           promptText="Introduce tu número asignado"/>
+                <Label layoutX="26.0" layoutY="171.0" text="Contraseña:">
+                    <font>
+                        <Font size="17.0"/>
+                    </font>
+                </Label>
+                <Button layoutX="24.0" layoutY="259.0" mnemonicParsing="false" onAction="#OnIniciarSesionClic"
+                        prefHeight="16.0" prefWidth="348.0"
+                        style="-fx-background-color: #0D6EFD; -fx-background-radius: 10;" text="Iniciar Sesión"
+                        textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Button>
+                <PasswordField fx:id="ContraseniaText" layoutX="26.0" layoutY="202.0" prefHeight="35.0"
+                               prefWidth="348.0" promptText="Introduce tu contraseña"/>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>
-
-

@@ -1,6 +1,8 @@
 package application.Model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 DROP TABLE IF EXISTS `gestionpartes`.`puntuacion_partes`;
@@ -28,6 +30,9 @@ public class Puntuacion_partes {
 
     @Column(name = "tipo_partes")
     private String tipo_partes;
+
+    @OneToMany(mappedBy = "id_parte", cascade = CascadeType.ALL)
+    Set<Partes_incidencia> partesIncidencias = new HashSet<>();
 
     public Puntuacion_partes() {
     }
@@ -59,6 +64,14 @@ public class Puntuacion_partes {
 
     public void setTipo_partes(String tipo_partes) {
         this.tipo_partes = tipo_partes;
+    }
+
+    public Set<Partes_incidencia> getPartesIncidencias() {
+        return partesIncidencias;
+    }
+
+    public void setPartesIncidencias(Set<Partes_incidencia> partesIncidencias) {
+        this.partesIncidencias = partesIncidencias;
     }
 
     @Override
