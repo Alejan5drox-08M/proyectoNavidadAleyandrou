@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -93,5 +94,12 @@ public class CrearParteController extends SuperController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GrupoCombo.getItems().addAll(grupos);
         HoraCombo.getItems().addAll(horas);
+    }
+
+    public void OnKeyPressed(KeyEvent keyEvent) {
+        String teclaPulsada = keyEvent.getCode().toString();
+        if (teclaPulsada.equals("TAB") || teclaPulsada.equals("ENTER")) {
+            //PartesDao.buscarAlumno()
+        }
     }
 }

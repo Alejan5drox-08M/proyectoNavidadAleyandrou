@@ -26,10 +26,11 @@ public class ProfesorDAO {
         String contrasena = DigestUtils.sha256Hex(contrasenna);
         try {
             session.beginTransaction();
-            profesor = session.createQuery("from Profesores where numero_asignado:numero_asignado and contrasena:contrasena", Profesores.class)
+            profesor = session.createQuery("from Profesores where numero_asignado=:numero_asignado and contrasena=:contrasena", Profesores.class)
                     .setParameter("numero_asignado", numero_asignado)
                     .setParameter("contrasena", contrasena)
                     .stream().findFirst().orElse(null);
+
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -40,6 +41,7 @@ public class ProfesorDAO {
     }
 
     public void annadirProfesor(Profesores profesor) {
+        profesor.setContrasena(DigestUtils.sha256Hex(profesor.getContrasena()));
         try {
             session.beginTransaction();
             session.save(profesor);

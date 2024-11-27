@@ -35,6 +35,7 @@ public class InicioSesionController extends SuperController {
         if (camposVacios()) {
             String numAsignado = NumeroAsignadoText.getText();
             String contra = ContraseniaText.getText();
+
             Profesores profesor = profesorDAO.buscarProfesor(numAsignado, contra);
             if (profesor == null) {
                 AlertUtils.mostrarError("No existe dicho profesor");

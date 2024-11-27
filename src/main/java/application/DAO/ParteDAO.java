@@ -4,8 +4,11 @@ import application.Conexion.Conexion;
 import application.Model.Alumnos;
 import application.Model.Grupos;
 import application.Model.Partes_incidencia;
+import application.Model.Profesores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import java.time.LocalDate;
 
 public class ParteDAO {
 
@@ -18,11 +21,7 @@ public class ParteDAO {
         session = Conexion.getSession();
     }
 
-    public void insertarParte(Alumnos alumno) {
-
-    }
-
-    public Alumnos buscarAlumnoByExp(String expediente) {
+    public Alumnos buscarAlumnoByExp(int expediente) {
         Alumnos alumno = null;
         try {
             session.beginTransaction();
@@ -35,6 +34,10 @@ public class ParteDAO {
             session.clear();
         }
         return alumno;
+    }
+
+    public void insertarParte(Alumnos alumno, Profesores profesor, LocalDate fecha, String hora, String descripcion) {
+
     }
 
 }
