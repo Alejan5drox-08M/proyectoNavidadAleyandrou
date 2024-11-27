@@ -68,4 +68,32 @@ public class ProfesorDAO {
         return profesores;
     }
 
+    public void eliminarProfesor(Profesores profesor) {
+        try {
+            session.beginTransaction();
+            session.delete(profesor);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+    }
+
+    public void modificarProfesor(Profesores profesorNuevo, Profesores profesorViejo) {
+        try {
+            session.beginTransaction();
+            profesorViejo.setNombre(profesorNuevo.getNombre());
+            profesorViejo.setContrasena(DigestUtils.sha256Hex(profesorNuevo.getContrasena()));
+            profesorViejo.setNumero_asignado(profesorNuevo.getNumero_asignado());
+            profesorViejo.setTipo(profesorNuevo.getTipo());
+            session.update(profesorViejo);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+    }
+
 }
