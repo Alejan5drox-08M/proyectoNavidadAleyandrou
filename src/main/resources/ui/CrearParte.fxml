@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fondoParte" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #befc77;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.proyectonavidad.CrearParteController">
+<AnchorPane fx:id="fondoParte" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #befc77;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.CrearParteController">
    <children>
       <Label fx:id="tituloPagina" alignment="CENTER" layoutY="14.0" prefHeight="51.0" prefWidth="949.0" text="PARTE VERDE DE ADVERTENCIA" textAlignment="CENTER">
          <font>

@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CrearUsuarioController implements Initializable {
+public class CrearUsuarioController extends SuperController implements Initializable{
 
     @FXML
     private PasswordField ContraseniaText;

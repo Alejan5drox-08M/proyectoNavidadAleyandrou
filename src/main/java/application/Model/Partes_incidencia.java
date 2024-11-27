@@ -67,7 +67,7 @@ public class Partes_incidencia {
     private Profesores id_profesor;
 
     @ManyToOne
-    @JoinColumn(name = "punt_partes", referencedColumnName = "punt_partes")
+    @JoinColumn(name = "id_punt_partes", referencedColumnName = "id_punt_partes")
     private Puntuacion_partes punt_partes;
 
     @Column(name = "descripcion")

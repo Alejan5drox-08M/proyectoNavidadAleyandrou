@@ -1,6 +1,7 @@
 package application.Utils;
 
 
+import application.Controller.SuperController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -56,4 +57,26 @@ public class CambioEscenas {
             AlertUtils.mostrarError("Error al cargar el FXML");
         }
     }*/
+
+    public static SuperController cambioEscenaController(String fxmlnName, AnchorPane rootPane) { //Función que introduce un nuevo stage con una escena
+        SuperController controller = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(R.getUI(fxmlnName));
+
+            // aqui abro la escena nueva
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(loader.load()));
+            newStage.sizeToScene();
+            controller = loader.getController();
+            newStage.show();
+
+            // aqui cierro la escena antigua
+            Stage currentStage = (Stage) rootPane.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
+            System.out.println("Error al cargar el FXML");
+        }
+        return controller;
+    }
 }

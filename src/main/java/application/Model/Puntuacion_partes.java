@@ -28,8 +28,8 @@ public class Puntuacion_partes {
     @Column(name = "puntos")
     private int puntos;
 
-    @Column(name = "tipo_partes")
-    private String tipo_partes;
+    @Column(name = "tipo_parte")
+    private String tipo_parte;
 
     @OneToMany(mappedBy = "id_parte", cascade = CascadeType.ALL)
     Set<Partes_incidencia> partesIncidencias = new HashSet<>();
@@ -39,7 +39,7 @@ public class Puntuacion_partes {
 
     public Puntuacion_partes(int puntos, String tipo_partes) {
         this.puntos = puntos;
-        this.tipo_partes = tipo_partes;
+        this.tipo_parte = tipo_partes;
     }
 
     public int getId_punt_partes() {
@@ -58,12 +58,12 @@ public class Puntuacion_partes {
         this.puntos = puntos;
     }
 
-    public String getTipo_partes() {
-        return tipo_partes;
+    public String getTipo_parte() {
+        return tipo_parte;
     }
 
-    public void setTipo_partes(String tipo_partes) {
-        this.tipo_partes = tipo_partes;
+    public void setTipo_parte(String tipo_parte) {
+        this.tipo_parte = tipo_parte;
     }
 
     public Set<Partes_incidencia> getPartesIncidencias() {
@@ -78,7 +78,7 @@ public class Puntuacion_partes {
     public String toString() {
         return "Puntuacion_partes{" +
                 "puntos=" + puntos +
-                ", tipo_partes='" + tipo_partes + '\'' +
+                ", tipo_partes='" + tipo_parte + '\'' +
                 '}';
     }
 }

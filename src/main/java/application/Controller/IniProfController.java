@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class IniProfController {
+public class IniProfController extends SuperController{
 
     @FXML
     private AnchorPane AreaCrear;

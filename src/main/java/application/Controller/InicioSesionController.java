@@ -1,32 +1,50 @@
 package application.Controller;
 
-import application.Utils.R;
+import application.DAO.ProfesorDAO;
+import application.Model.Profesores;
+import application.Utils.AlertUtils;
+import application.Utils.CambioEscenas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class InicioSesionController {
+public class InicioSesionController extends SuperController {
 
-    public ImageView imagen;
+
+    public AnchorPane inicioSesion;
+
     @FXML
     private TextField ContraseniaText;
 
     @FXML
     private TextField NumeroAsignadoText;
 
+    ProfesorDAO profesorDAO;
+
+    public InicioSesionController() {
+        profesorDAO = new ProfesorDAO();
+    }
+
     @FXML
     void OnIniciarSesionClic(ActionEvent event) {
         if (camposVacios()) {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setContentText("Pantalla Inicio Usuario");
-            alerta.show();
+            String numAsignado = NumeroAsignadoText.getText();
+            String contra = ContraseniaText.getText();
+            Profesores profesor = profesorDAO.buscarProfesor(numAsignado, contra);
+            if (profesor == null) {
+                AlertUtils.mostrarError("No existe dicho profesor");
+            } else {
+                if (profesor.getTipo().equalsIgnoreCase("profesor")) {
+                    CambioEscenas.cambioEscenaController("InicioProfesor.fxml", inicioSesion);
+                } else {
+                    CambioEscenas.cambioEscenaController("InicioJefeEstudios.fxml", inicioSesion);
+                }
+            }
         }
     }
 
