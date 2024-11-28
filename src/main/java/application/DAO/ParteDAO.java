@@ -25,7 +25,7 @@ public class ParteDAO {
         Alumnos alumno = null;
         try {
             session.beginTransaction();
-            alumno = session.createQuery("rom Alumnos where numero_expediente:numero_expediente", Alumnos.class)
+            alumno = session.createQuery("from Alumnos where numero_expediente:numero_expediente", Alumnos.class)
                     .setParameter("numero_expediente", expediente).stream().findFirst().orElse(null);
             session.getTransaction().commit();
         } catch (Exception e) {
