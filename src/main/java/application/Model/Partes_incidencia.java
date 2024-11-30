@@ -74,7 +74,7 @@ public class Partes_incidencia {
     private String descripcion;
 
     @Column(name = "fecha")
-    private String fecha;
+    private LocalDate fecha;
 
     @Column(name = "hora")
     private String hora;
@@ -85,7 +85,7 @@ public class Partes_incidencia {
     public Partes_incidencia() {
     }
 
-    public Partes_incidencia(Alumnos id_alum, Grupos id_grupo, Profesores id_profesor, Puntuacion_partes punt_partes, String descripcion, String fecha, String hora, String sancion) {
+    public Partes_incidencia(Alumnos id_alum, Grupos id_grupo, Profesores id_profesor, Puntuacion_partes punt_partes, String descripcion, LocalDate fecha, String hora, String sancion) {
         this.id_alum = id_alum;
         this.id_grupo = id_grupo;
         this.id_profesor = id_profesor;
@@ -144,11 +144,11 @@ public class Partes_incidencia {
         this.descripcion = descripcion;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -176,7 +176,7 @@ public class Partes_incidencia {
                 ", id_profesor=" + id_profesor +
                 ", punt_partes=" + punt_partes +
                 ", descripcion='" + descripcion + '\'' +
-                ", fecha='" + fecha + '\'' +
+                ", fecha='" + fecha.toString() + '\'' +
                 ", hora='" + hora + '\'' +
                 ", sancion='" + sancion + '\'' +
                 '}';

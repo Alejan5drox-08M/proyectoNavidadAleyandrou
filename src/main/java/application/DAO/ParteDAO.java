@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,11 +53,25 @@ public class ParteDAO extends ConexionDAO {
         return partesIncidencias;
     }
 
-    public Set<Partes_incidencia> buscarPorFecha(LocalDate fecha) {
-        Set<Partes_incidencia> partesIncidencias = listarPartes();
-        partesIncidencias.stream()
-                .filter(partesIncidencia -> partesIncidencia.getFecha().equalsIgnoreCase(fecha.toString()));
-        return partesIncidencias;
+    public Set<Partes_incidencia> buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
+        List<Partes_incidencia> listaPartes = listarPartes().stream().toList();
+        if (fechaEmpieza == null) {
+            return listaPartes.stream()
+                    .filter(partesIncidencia ->
+                            partesIncidencia.getFecha().isBefore(fechaAcaba))
+                    .collect(Collectors.toSet());
+        }
+        if (fechaAcaba == null) {
+            return listaPartes.stream()
+                    .filter(partesIncidencia ->
+                            partesIncidencia.getFecha().isAfter(fechaEmpieza))
+                    .collect(Collectors.toSet());
+        }
+        return listaPartes.stream()
+                .filter(partesIncidencia ->
+                        partesIncidencia.getFecha().isAfter(fechaEmpieza) &&
+                                partesIncidencia.getFecha().isBefore(fechaAcaba))
+                .collect(Collectors.toSet());
     }
 
 
