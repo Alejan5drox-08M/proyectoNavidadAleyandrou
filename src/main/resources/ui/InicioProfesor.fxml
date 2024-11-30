@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.IniProfController">
+<AnchorPane fx:id="fondoProfe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.IniProfController">
    <children>
       <ImageView fitHeight="623.0" fitWidth="645.0" layoutX="302.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,14 +21,14 @@
                   <Image url="@/images/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="875.0" layoutY="38.0" text="Profesor">
+            <Label layoutX="869.0" layoutY="38.0" text="Profesor">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AreaCrear" layoutX="65.0" onMouseClicked="#OnCrearParteClic" onMouseEntered="#OnMouseEnter" onMouseExited="#OnMouseExit" prefHeight="67.0" prefWidth="117.0">
+      <AnchorPane fx:id="AreaCrear" layoutX="65.0" onMouseClicked="#OnCrearParteClic" onMouseEntered="#OnMouseEnter" onMouseExited="#OnMouseExit" prefHeight="68.0" prefWidth="117.0">
          <children>
             <Label layoutX="10.0" layoutY="19.0" text="Crear Parte" textAlignment="CENTER">
                <font>

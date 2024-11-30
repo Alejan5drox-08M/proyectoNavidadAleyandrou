@@ -1,21 +1,24 @@
 package application.Controller;
 
+import application.Utils.CambioEscenas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class IniProfController extends SuperController{
+import java.io.IOException;
+
+public class IniProfController {
 
     @FXML
     private AnchorPane AreaCrear;
 
     @FXML
-    void OnCrearParteClic(MouseEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Pantalla Crear Parte");
-        alerta.show();
+    private AnchorPane fondoProfe;
+
+    @FXML
+    void OnCrearParteClic(MouseEvent event) throws IOException {
+        CambioEscenas.cambioEscena("CrearParte.fxml", fondoProfe);
     }
 
     @FXML
@@ -29,10 +32,8 @@ public class IniProfController extends SuperController{
     }
 
     @FXML
-    public void OnVolverClic(ActionEvent actionEvent) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Ir a InicioSesion.fxml");
-        alerta.show();
+    public void OnVolverClic(ActionEvent actionEvent) throws IOException {
+        CambioEscenas.cambioEscena("InicioSesion.fxml", fondoProfe);
     }
 
     public void cambiarFondoAzul(AnchorPane areaAzul){
@@ -42,4 +43,5 @@ public class IniProfController extends SuperController{
     public void cambiarFondoGris(AnchorPane areaGris){
         areaGris.setStyle("-fx-background-color: #E4E4E5;");
     }
+
 }

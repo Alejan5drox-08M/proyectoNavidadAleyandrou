@@ -1,15 +1,24 @@
 package application.Controller;
 
+import application.DAO.ProfesorDAO;
+import application.Model.Profesores;
+import application.Utils.AlertUtils;
+import application.Utils.CambioEscenas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CrearUsuarioController extends SuperController implements Initializable{
+public class CrearUsuarioController implements Initializable {
 
     @FXML
     private PasswordField ContraseniaText;
@@ -35,14 +44,31 @@ public class CrearUsuarioController extends SuperController implements Initializ
     @FXML
     private Label errorTipo;
 
+    @FXML
+    private AnchorPane fondoUsuario;
+
     private String[] tipoUsuario={"Profesor", "Jefe de Estudios"};
+
+    ProfesorDAO profesorDAO = new ProfesorDAO();
 
     @FXML
     void OnCrearUsuarioClic(ActionEvent event) {
+        String tipo = "jefe_de_estudios";
         if (camposVacios()){
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setContentText("Usuario Creado");
-            alerta.show();
+            if (Objects.equals(TipoChoice.getValue().toString(), "Profesor")){
+                tipo = "profesor";
+            }
+            Profesores prof1 = new Profesores(ContraseniaText.getText(), NombreText.getText(), NumeroAsignadoText.getText(), tipo);
+            if (profesorDAO.buscarProfesor(prof1)) {
+                if (profesorDAO.annadirProfesor(prof1)) {
+                    AlertUtils.mostrarConfirmacion("Usuario creado");
+                    vaciarCampos();
+                } else {
+                    AlertUtils.mostrarError("El Usuario no se ha creado");
+                }
+            } else {
+                AlertUtils.mostrarError("El Usuario ya existe");
+            }
         }
     }
 
@@ -76,14 +102,19 @@ public class CrearUsuarioController extends SuperController implements Initializ
     }
 
     @FXML
-    public void OnVolverClic(ActionEvent actionEvent) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Ir a InicioJefeEstudios.fxml");
-        alerta.show();
+    public void OnVolverClic(ActionEvent actionEvent) throws IOException {
+        CambioEscenas.cambioEscena("InicioJefeEstudios.fxml", fondoUsuario);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         TipoChoice.getItems().addAll(tipoUsuario);
+    }
+
+    public void vaciarCampos(){
+        ContraseniaText.setText("");
+        NumeroAsignadoText.setText("");
+        NombreText.setText("");
+        TipoChoice.setValue(null);
     }
 }

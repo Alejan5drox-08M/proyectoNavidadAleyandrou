@@ -1,12 +1,15 @@
 package application.Controller;
 
+import application.Utils.CambioEscenas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class IniJefController extends SuperController {
+import java.io.IOException;
+
+public class IniJefController {
 
     @FXML
     private AnchorPane CrearPartePane;
@@ -21,17 +24,16 @@ public class IniJefController extends SuperController {
     private AnchorPane ListaPartesPane;
 
     @FXML
-    void OnCrearParteClic(MouseEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Pantalla Crear Parte");
-        alerta.show();
+    private AnchorPane fondoProfe;
+
+    @FXML
+    void OnCrearParteClic(MouseEvent event) throws IOException {
+        CambioEscenas.cambioEscena("CrearParte.fxml", fondoProfe);
     }
 
     @FXML
-    void OnCrearProfesorClic(MouseEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Pantalla Crear Profesor");
-        alerta.show();
+    void OnCrearProfesorClic(MouseEvent event) throws IOException {
+        CambioEscenas.cambioEscena("CrearUsuario.fxml", fondoProfe);
     }
 
     @FXML
@@ -42,10 +44,8 @@ public class IniJefController extends SuperController {
     }
 
     @FXML
-    void OnListaPartesClic(MouseEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Pantalla Listar Partes");
-        alerta.show();
+    void OnListaPartesClic(MouseEvent event) throws IOException {
+        CambioEscenas.cambioEscena("ListaPartes.fxml", fondoProfe);
     }
 
     @FXML
@@ -89,17 +89,16 @@ public class IniJefController extends SuperController {
     }
 
     @FXML
-    public void OnVolverClic(ActionEvent actionEvent) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText("Ir a InicioSesion.fxml");
-        alerta.show();
+    public void OnVolverClic(ActionEvent actionEvent) throws IOException {
+        CambioEscenas.cambioEscena("InicioSesion.fxml", fondoProfe);
     }
 
-    public void cambiarFondoAzul(AnchorPane areaAzul){
+    public void cambiarFondoAzul(AnchorPane areaAzul) {
         areaAzul.setStyle("-fx-background-color: #A3CEEF;");
     }
 
-    public void cambiarFondoGris(AnchorPane areaGris){
+    public void cambiarFondoGris(AnchorPane areaGris) {
         areaGris.setStyle("-fx-background-color: #E4E4E5;");
     }
+
 }

@@ -1,10 +1,7 @@
 package application.DAO;
 
 import application.Conexion.Conexion;
-import application.Model.Alumnos;
-import application.Model.Grupos;
-import application.Model.Partes_incidencia;
-import application.Model.Profesores;
+import application.Model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -33,6 +30,21 @@ public class ParteDAO extends ConexionDAO {
             session.clear();
         }
         return alumno;
+    }
+
+    public Set<Partes_incidencia> filtarByAlumno(Alumnos alumno) {
+        Set<Partes_incidencia> partesIncidencias = new HashSet<>();
+        try {
+            session.beginTransaction();
+            partesIncidencias = session.createQuery("from Partes_incidencia where alumno_id:=alumno_id", Partes_incidencia.class)
+                    .setParameter("alumno_id", alumno)
+                    .stream().collect(Collectors.toSet());
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+        return partesIncidencias;
     }
 
     public void insertarParte(Alumnos alumno, Profesores profesor, LocalDate fecha, String hora, String descripcion) {
@@ -73,6 +85,18 @@ public class ParteDAO extends ConexionDAO {
                                 partesIncidencia.getFecha().isBefore(fechaAcaba))
                 .collect(Collectors.toSet());
     }
-
-
+//aqui consigo las 3 puntuaciones
+    public Set<Puntuacion_partes> getPuntuaciones(){
+        Set<Puntuacion_partes> puntuaciones = new HashSet<>();
+        try {
+            session.beginTransaction();
+            puntuaciones = session.createQuery("from Puntuacion_partes", Puntuacion_partes.class)
+                    .stream().collect(Collectors.toSet());
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+        return puntuaciones;
+    }
 }

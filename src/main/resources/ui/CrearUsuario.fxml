@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.CrearUsuarioController">
+<AnchorPane fx:id="fondoUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.CrearUsuarioController">
    <children>
       <ImageView fitHeight="623.0" fitWidth="645.0" layoutX="163.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/logo.png" />
+            <Image url="@/images/logo.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="277.0" layoutY="51.0" prefHeight="512.0" prefWidth="395.0" style="-fx-background-color: #86BEDA; -fx-background-radius: 20;">

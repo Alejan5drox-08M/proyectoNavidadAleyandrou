@@ -11,19 +11,35 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-public class ProfesorDAO {
-    private SessionFactory factory;
-    private Session session;
+public class ProfesorDAO extends ConexionDAO {
+    private Session session = getSession();
 
-    public ProfesorDAO() {
-        Conexion.conexion();
-        factory = Conexion.getFactory();
-        session = Conexion.getSession();
+    public Boolean buscarProfesor(Profesores profesorABuscar) {
+        Profesores profesor = null;
+        boolean encontrado = false;
+        String contrasena = DigestUtils.sha256Hex(profesorABuscar.getContrasena());
+        try {
+            session.beginTransaction();
+            profesor = session.createQuery("from Profesores where numero_asignado=:numero_asignado and contrasena=:contrasena", Profesores.class)
+                    .setParameter("numero_asignado", profesorABuscar.getNumero_asignado())
+                    .setParameter("contrasena", contrasena)
+                    .stream().findFirst().orElse(null);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+        if (profesor != null) {
+            encontrado = true;
+        }
+        return encontrado;
     }
 
-    public Profesores buscarProfesor(String numero_asignado, String contrasenna) {
+    public Profesores comprobarProfesor(String numero_asignado, String password) {
         Profesores profesor = null;
-        String contrasena = DigestUtils.sha256Hex(contrasenna);
+        boolean encontrado = false;
+        String contrasena = DigestUtils.sha256Hex(password);
         try {
             session.beginTransaction();
             profesor = session.createQuery("from Profesores where numero_asignado=:numero_asignado and contrasena=:contrasena", Profesores.class)
@@ -40,17 +56,20 @@ public class ProfesorDAO {
         return profesor;
     }
 
-    public void annadirProfesor(Profesores profesor) {
+    public Boolean annadirProfesor(Profesores profesor) {
+        boolean annadido = false;
         profesor.setContrasena(DigestUtils.sha256Hex(profesor.getContrasena()));
         try {
             session.beginTransaction();
             session.save(profesor);
             session.getTransaction().commit();
+            annadido = true;
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
             session.clear();
         }
+        return annadido;
     }
 
     public Set<Profesores> listarProfesores() {

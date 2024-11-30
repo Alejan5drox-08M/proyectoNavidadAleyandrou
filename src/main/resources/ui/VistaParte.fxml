@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="FondoParte" prefHeight="851.0" prefWidth="601.0" style="-fx-background-color: #befc77;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.VistaParteController">
+   <children>
+      <Label fx:id="TituloParte" alignment="CENTER" contentDisplay="CENTER" layoutY="51.0" prefHeight="32.0" prefWidth="601.0" text="PARTE VERDE DE ADVERTENCIA">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Pane layoutX="41.0" layoutY="114.0" prefHeight="73.0" prefWidth="519.0" style="-fx-border-color: black;">
+         <children>
+            <Pane prefHeight="25.0" prefWidth="519.0" style="-fx-border-color: black;">
+               <children>
+                  <Pane layoutX="351.0" prefHeight="25.0" prefWidth="168.0" style="-fx-border-color: black;">
+                     <children>
+                        <Label fx:id="GrupoText" layoutX="70.0" layoutY="2.0" text="Grupo">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="6.0" layoutY="2.0" text="GRUPO:">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Label fx:id="NombreAlumnoText" layoutX="83.0" layoutY="2.0" text="Nombre del Alumno">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="6.0" layoutY="2.0" text="ALUMNO:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutY="24.0" prefHeight="25.0" prefWidth="519.0" style="-fx-border-color: black;">
+               <children>
+                  <Label fx:id="NombreProfeText" layoutX="202.0" layoutY="2.0" text="Nombre del Profesor">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="7.0" layoutY="2.0" text="PROFESOR QUE INFORMA:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutY="48.0" prefHeight="25.0" prefWidth="519.0" style="-fx-border-color: black;">
+               <children>
+                  <Pane layoutX="351.0" prefHeight="25.0" prefWidth="168.0" style="-fx-border-color: black;">
+                     <children>
+                        <Label fx:id="HoraText" layoutX="61.0" layoutY="2.0" text="Hora del Parte">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="7.0" layoutY="2.0" text="HORA:">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Label fx:id="FechaText" layoutX="66.0" layoutY="2.0" text="Fecha del Parte">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="11.0" layoutY="2.0" text="FECHA:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Label fx:id="TextoParteVerde" layoutX="41.0" layoutY="190.0" text="Faltas leves de disciplina contrarias a las normas de convivencia">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Pane layoutX="41.0" layoutY="214.0" prefHeight="294.0" prefWidth="519.0" style="-fx-border-color: black;">
+         <children>
+            <Pane prefHeight="21.0" prefWidth="519.0" style="-fx-border-color: black;">
+               <children>
+                  <Label layoutX="8.0" text="Descripción de los hechos:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="DescripcionText" alignment="TOP_LEFT" layoutX="14.0" layoutY="29.0" prefHeight="251.0" prefWidth="492.0" text="Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar" wrapText="true" />
+         </children>
+      </Pane>
+      <Label layoutX="41.0" layoutY="526.0" text="La sanción que recibes (a determinar por el profesor):">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Pane layoutX="41.0" layoutY="555.0" prefHeight="188.0" prefWidth="519.0" style="-fx-border-color: black;">
+         <children>
+            <Label fx:id="SancionText" alignment="TOP_LEFT" layoutX="14.0" layoutY="7.0" prefHeight="172.0" prefWidth="492.0" text="Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar" wrapText="true" />
+         </children>
+      </Pane>
+      <HBox layoutX="160.0" layoutY="763.0" prefHeight="25.0" prefWidth="283.0">
+         <children>
+            <Label text="En Valladolid a ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="DiaText" text="28">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text=" de ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="MesText" text="Agosto">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text=" de ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="AnioText" text="2024">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="265.0" layoutY="801.0" text="El profesor">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="90.0" fitWidth="71.0" layoutX="489.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
