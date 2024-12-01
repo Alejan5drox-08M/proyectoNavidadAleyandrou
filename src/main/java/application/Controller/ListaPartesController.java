@@ -5,8 +5,6 @@ import application.Model.Alumnos;
 import application.Model.Partes_incidencia;
 import application.Utils.CambioEscenas;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -17,8 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class ListaPartesController {
 
@@ -59,7 +57,7 @@ public class ListaPartesController {
     private AnchorPane fondoParte;
 
     ParteDAO parteDAO = new ParteDAO();
-    Set<Partes_incidencia> partes;
+    List<Partes_incidencia> partes;
     Alumnos alumno;
     Partes_incidencia parte = new Partes_incidencia();
 
@@ -82,7 +80,7 @@ public class ListaPartesController {
     }
 
     private void cargarPartes() {
-        LaTabla.setItems(FXCollections.observableList(partes.stream().toList()));
+        LaTabla.setItems(FXCollections.observableList(partes));
     }
 
     @FXML

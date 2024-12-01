@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,13 +33,13 @@ public class ParteDAO extends ConexionDAO {
         return alumno;
     }
 
-    public Set<Partes_incidencia> filtarByAlumno(Alumnos alumno) {
-        Set<Partes_incidencia> partesIncidencias = new HashSet<>();
+    public List<Partes_incidencia> filtarByAlumno(Alumnos alumno) {
+        List<Partes_incidencia> partesIncidencias = new ArrayList<>();
         try {
             session.beginTransaction();
             partesIncidencias = session.createQuery("from Partes_incidencia where alumno_id:=alumno_id", Partes_incidencia.class)
                     .setParameter("alumno_id", alumno)
-                    .stream().collect(Collectors.toSet());
+                    .stream().toList();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -51,12 +52,12 @@ public class ParteDAO extends ConexionDAO {
 
     }
 
-    public Set<Partes_incidencia> listarPartes() {
-        Set<Partes_incidencia> partesIncidencias = new HashSet<>();
+    public List<Partes_incidencia> listarPartes() {
+        List<Partes_incidencia> partesIncidencias = new ArrayList<>();
         try {
             session.beginTransaction();
             partesIncidencias = session.createQuery("from Partes_incidencia", Partes_incidencia.class)
-                    .stream().collect(Collectors.toSet());
+                    .stream().toList();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -65,33 +66,33 @@ public class ParteDAO extends ConexionDAO {
         return partesIncidencias;
     }
 
-    public Set<Partes_incidencia> buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
-        List<Partes_incidencia> listaPartes = listarPartes().stream().toList();
+    public List<Partes_incidencia> buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
+        List<Partes_incidencia> listaPartes = listarPartes();
         if (fechaEmpieza == null) {
             return listaPartes.stream()
                     .filter(partesIncidencia ->
                             partesIncidencia.getFecha().isBefore(fechaAcaba))
-                    .collect(Collectors.toSet());
+                    .toList();
         }
         if (fechaAcaba == null) {
             return listaPartes.stream()
                     .filter(partesIncidencia ->
-                            partesIncidencia.getFecha().isAfter(fechaEmpieza))
-                    .collect(Collectors.toSet());
+                            partesIncidencia.getFecha().isAfter(fechaEmpieza)).toList();
         }
         return listaPartes.stream()
                 .filter(partesIncidencia ->
                         partesIncidencia.getFecha().isAfter(fechaEmpieza) &&
                                 partesIncidencia.getFecha().isBefore(fechaAcaba))
-                .collect(Collectors.toSet());
+                .toList();
     }
-//aqui consigo las 3 puntuaciones
-    public Set<Puntuacion_partes> getPuntuaciones(){
-        Set<Puntuacion_partes> puntuaciones = new HashSet<>();
+
+    //aqui consigo las 3 puntuaciones
+    public List<Puntuacion_partes> getPuntuaciones() {
+        List<Puntuacion_partes> puntuaciones = new ArrayList<>();
         try {
             session.beginTransaction();
             puntuaciones = session.createQuery("from Puntuacion_partes", Puntuacion_partes.class)
-                    .stream().collect(Collectors.toSet());
+                    .stream().toList();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
