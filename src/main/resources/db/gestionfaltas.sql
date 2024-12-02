@@ -70,7 +70,6 @@ DROP TABLE IF EXISTS `gestionpartes`.`partes_colores`;
 CREATE TABLE IF NOT EXISTS `gestionpartes`.`partes_colores` (
     `color` VARCHAR(255) PRIMARY KEY,
     `puntuacion` INT(255) NOT NULL DEFAULT 0,
-    `cod_color` VARCHAR(6) NOT NULL DEFAULT 0
 );
 
 -- -----------------------------------------------------
@@ -157,9 +156,9 @@ INSERT INTO alumnos (id_grupo, puntos_acumulados, nombre_alum, numero_expediente
 
 
 -- Inserción de tipos de parte
-INSERT INTO partes_colores (color, puntuacion, cod_color) VALUES('Verde', 1, 'befc77');
-INSERT INTO partes_colores (color, puntuacion, cod_color) VALUES('Naranja', 6, 'ffa500');
-INSERT INTO partes_colores (color, puntuacion, cod_color) VALUES('Rojo', 12, 'ff0000');
+INSERT INTO partes_colores (color, puntuacion, cod_color) VALUES('Verde', 1);
+INSERT INTO partes_colores (color, puntuacion, cod_color) VALUES('Naranja', 6);
+INSERT INTO partes_colores (color, puntuacion, cod_color) VALUES('Rojo', 12);
 
 -- Inserción de partes de incidencia en la tabla 'partes_incidencia'
 INSERT INTO partes_incidencia (id_alum, id_grupo, id_profesor, descripcion, fecha, hora, sancion, color) VALUES(1, 1, 1, 'Incidente menor', '2024-01-01', '09:00', 'Advertencia', 'Verde');
