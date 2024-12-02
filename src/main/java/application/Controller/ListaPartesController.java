@@ -3,6 +3,7 @@ package application.Controller;
 import application.DAO.ParteDAO;
 import application.Model.Alumnos;
 import application.Model.Partes_incidencia;
+import application.Utils.AlertUtils;
 import application.Utils.CambioEscenas;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -85,7 +86,13 @@ public class ListaPartesController extends SuperController {
 
     @FXML
     void OnBuscarFechaClic(ActionEvent event) {
-        // Implementar la lógica para buscar por fecha
+        if(FechaInicio.getValue()==null||FechaFinal.getValue()==null){
+            AlertUtils.mostrarError("Los campos no pueden estar vacíos");
+        }else{
+            parteDAO.buscarPorFecha(FechaInicio.getValue(),FechaFinal.getValue());
+        }
+        cargarPartes();
+        vaciarCampos();
     }
 
     @FXML
