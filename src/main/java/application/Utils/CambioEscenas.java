@@ -1,7 +1,6 @@
 package application.Utils;
 
 
-import application.Controller.SuperController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

@@ -7,25 +7,19 @@ CREATE TABLE IF NOT EXISTS `gestionpartes`.`partes_incidencia` (
   `id_grupo` INT NULL DEFAULT NULL,
   `id_parte` INT NOT NULL AUTO_INCREMENT,
   `id_profesor` INT NULL DEFAULT NULL,
-  `id_punt_partes` INT NULL DEFAULT NULL,
   `descripcion` VARCHAR(255) NULL DEFAULT NULL,
-  `fecha` VARCHAR(255) NULL DEFAULT NULL,
+  `fecha` DATE NULL DEFAULT NULL,
   `hora` VARCHAR(255) NULL DEFAULT NULL,
   `sancion` VARCHAR(255) NULL DEFAULT NULL,
+  `color` VARCHAR(255) NULL DEFAULT NULL REFERENCES `partes_tipos`(`color`),
   PRIMARY KEY (`id_parte`),
   INDEX `FKqrx661g5lij25bl2plx6cb2pl` (`id_alum` ASC),
   INDEX `FKckq2ajm1w9wbi3kunm8q3ldp3` (`id_grupo` ASC),
-  INDEX `FKniytl2x2lvm632ic1904a1bhb` (`id_profesor` ASC),
-  INDEX `FK75ruupml2w0bpugnsojl56g05` (`id_punt_partes` ASC))
+  INDEX `FKniytl2x2lvm632ic1904a1bhb` (`id_profesor` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
-
-ALTER TABLE `gestionpartes`.`partes_incidencia`
-  ADD CONSTRAINT `FK75ruupml2w0bpugnsojl56g05`
-  FOREIGN KEY (`id_punt_partes`)
-  REFERENCES `gestionpartes`.`puntuacion_partes` (`id_punt_partes`);
 
 ALTER TABLE `gestionpartes`.`partes_incidencia`
   ADD CONSTRAINT `FKckq2ajm1w9wbi3kunm8q3ldp3`
@@ -66,10 +60,6 @@ public class Partes_incidencia {
     @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")
     private Profesores id_profesor;
 
-    @ManyToOne
-    @JoinColumn(name = "id_punt_partes", referencedColumnName = "id_punt_partes")
-    private Puntuacion_partes punt_partes;
-
     @Column(name = "descripcion")
     private String descripcion;
 
@@ -85,11 +75,10 @@ public class Partes_incidencia {
     public Partes_incidencia() {
     }
 
-    public Partes_incidencia(Alumnos id_alum, Grupos id_grupo, Profesores id_profesor, Puntuacion_partes punt_partes, String descripcion, LocalDate fecha, String hora, String sancion) {
+    public Partes_incidencia(Alumnos id_alum, Grupos id_grupo, Profesores id_profesor, LocalDate fecha, String hora, String descripcion, String sancion) {
         this.id_alum = id_alum;
         this.id_grupo = id_grupo;
         this.id_profesor = id_profesor;
-        this.punt_partes = punt_partes;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.hora = hora;
@@ -126,14 +115,6 @@ public class Partes_incidencia {
 
     public void setId_profesor(Profesores id_profesor) {
         this.id_profesor = id_profesor;
-    }
-
-    public Puntuacion_partes getPunt_partes() {
-        return punt_partes;
-    }
-
-    public void setPunt_partes(Puntuacion_partes punt_partes) {
-        this.punt_partes = punt_partes;
     }
 
     public String getDescripcion() {
@@ -174,7 +155,6 @@ public class Partes_incidencia {
                 "id_alum=" + id_alum +
                 ", id_grupo=" + id_grupo +
                 ", id_profesor=" + id_profesor +
-                ", punt_partes=" + punt_partes +
                 ", descripcion='" + descripcion + '\'' +
                 ", fecha='" + fecha.toString() + '\'' +
                 ", hora='" + hora + '\'' +

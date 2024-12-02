@@ -1,7 +1,10 @@
 package application.Controller;
 
 import application.DAO.ParteDAO;
-import application.Model.*;
+import application.Model.Alumnos;
+import application.Model.Grupos;
+import application.Model.Partes_incidencia;
+import application.Model.Profesores;
 import application.Utils.AlertUtils;
 import application.Utils.CambioEscenas;
 import javafx.event.ActionEvent;
@@ -16,7 +19,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CrearParteController implements Initializable {
+public class CrearParteController extends SuperController implements Initializable {
 
     @FXML
     private AnchorPane fondoParte;
@@ -66,6 +69,8 @@ public class CrearParteController implements Initializable {
 
     ParteDAO parteDAO = new ParteDAO();
 
+    Profesores profesor = getProfesor();
+
     private String[] horas = {"08:30", "09:25", "10:20", "11:40", "12:35", "13:30", "16:00", "16:55", "17:50", "19:00", "19:55", "20:50"};
     private String[] sanciones = {"Incoación de expediente o expediente abreviado", "Reunion con la Comisión de Convivencia", "Obligatorio pedir disculpas a los afectados y reparar los daños causados", "✎ Rellenar a mano"};
 
@@ -78,7 +83,6 @@ public class CrearParteController implements Initializable {
     void OnCrearClic(ActionEvent event) throws IOException {
         if (camposVacios()) {
             String sancion = "";
-//            if (alumno1)
             if (puntos < 12) {
                 sancion = SancionText.getText();
             } else if (Objects.equals(ComboSancion.getValue().toString(), "✎ Rellenar a mano")) {
@@ -86,7 +90,8 @@ public class CrearParteController implements Initializable {
             } else {
                 sancion = ComboSancion.getValue().toString();
             }
-            if (parteDAO.insertarParte(alumno1, ProfesorCompartido.getProfeIniciado(), puntos, FechaPicker.getValue(), HoraCombo.getValue().toString(), DescripcionText.getText(), sancion)) {
+            Partes_incidencia parte = new Partes_incidencia(alumno1, alumno1.getId_grupo(), profesor, FechaPicker.getValue(), HoraCombo.getValue().toString(), DescripcionText.getText(), sancion);
+            if (parteDAO.insertarParte(parte)) {
                 AlertUtils.mostrarConfirmacion("Parte creado");
                 vaciarCampos();
             } else {
@@ -127,7 +132,7 @@ public class CrearParteController implements Initializable {
 
     @FXML
     public void OnVolverClic(ActionEvent actionEvent) throws IOException {
-        if (Objects.equals(ProfesorCompartido.getProfeIniciado().getTipo(), "profesor")) {
+        if (Objects.equals(profesor.getTipo(), "profesor")) {
             CambioEscenas.cambioEscena("InicioProfesor.fxml", fondoParte);
         } else {
             CambioEscenas.cambioEscena("InicioJefeEstudios.fxml", fondoParte);
@@ -197,6 +202,6 @@ public class CrearParteController implements Initializable {
             }
         });
 
-        NombreProfesor.setText(ProfesorCompartido.getProfeIniciado().getNombre());
+        NombreProfesor.setText(profesor.getNombre());
     }
 }

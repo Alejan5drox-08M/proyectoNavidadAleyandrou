@@ -1,15 +1,20 @@
 package application.Controller;
 
+import application.Model.Profesores;
 import application.Utils.CambioEscenas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class IniProfController {
+public class IniProfController extends SuperController  implements Initializable {
 
+    Profesores profesor = getProfesor();
     @FXML
     private AnchorPane AreaCrear;
 
@@ -36,12 +41,16 @@ public class IniProfController {
         CambioEscenas.cambioEscena("InicioSesion.fxml", fondoProfe);
     }
 
-    public void cambiarFondoAzul(AnchorPane areaAzul){
+    public void cambiarFondoAzul(AnchorPane areaAzul) {
         areaAzul.setStyle("-fx-background-color: #A3CEEF;");
     }
 
-    public void cambiarFondoGris(AnchorPane areaGris){
+    public void cambiarFondoGris(AnchorPane areaGris) {
         areaGris.setStyle("-fx-background-color: #E4E4E5;");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(profesor);
+    }
 }

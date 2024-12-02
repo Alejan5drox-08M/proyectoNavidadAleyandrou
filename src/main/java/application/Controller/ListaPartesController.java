@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class ListaPartesController {
+public class ListaPartesController extends SuperController {
 
     @FXML
     private TextField BuscarNumeroExpediente;
@@ -80,7 +80,7 @@ public class ListaPartesController {
     }
 
     private void cargarPartes() {
-        LaTabla.setItems(FXCollections.observableList(partes));
+        LaTabla.setItems(FXCollections.observableList(partes.stream().toList()));
     }
 
     @FXML

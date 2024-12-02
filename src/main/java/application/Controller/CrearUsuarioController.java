@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CrearUsuarioController implements Initializable {
+public class CrearUsuarioController extends SuperController implements Initializable {
 
     @FXML
     private PasswordField ContraseniaText;
@@ -59,7 +59,7 @@ public class CrearUsuarioController implements Initializable {
                 tipo = "profesor";
             }
             Profesores prof1 = new Profesores(ContraseniaText.getText(), NombreText.getText(), NumeroAsignadoText.getText(), tipo);
-            if (profesorDAO.buscarProfesor(prof1)) {
+            if (!profesorDAO.buscarProfesor(prof1)) {
                 if (profesorDAO.annadirProfesor(prof1)) {
                     AlertUtils.mostrarConfirmacion("Usuario creado");
                     vaciarCampos();

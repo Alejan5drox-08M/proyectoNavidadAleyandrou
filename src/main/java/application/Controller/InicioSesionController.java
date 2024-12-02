@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.util.Objects;
 
-public class InicioSesionController {
+public class InicioSesionController extends SuperController {
 
     @FXML
     private TextField ContraseniaText;
@@ -32,8 +32,8 @@ public class InicioSesionController {
     void OnIniciarSesionClic(ActionEvent event) throws IOException {
         if (camposVacios()) {
             prof1 = profesorDAO.comprobarProfesor(NumeroAsignadoText.getText(), ContraseniaText.getText());
-            if (prof1!=null){
-                ProfesorCompartido.setProfeIniciado(prof1);
+            if (prof1 != null) {
+                setProfesor(prof1);
                 if (Objects.equals(prof1.getTipo(), "profesor")) {
                     CambioEscenas.cambioEscena("InicioProfesor.fxml", InicioFondo);
                 } else {
@@ -45,8 +45,8 @@ public class InicioSesionController {
         }
     }
 
-    public boolean camposVacios(){
-        if (Objects.equals(ContraseniaText.getText(), "") || Objects.equals(NumeroAsignadoText.getText(), "")){
+    public boolean camposVacios() {
+        if (Objects.equals(ContraseniaText.getText(), "") || Objects.equals(NumeroAsignadoText.getText(), "")) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setContentText("Todos los campos deben estar rellenos");
             alerta.show();

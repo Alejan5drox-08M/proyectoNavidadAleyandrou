@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class IniJefController {
+public class IniJefController extends SuperController {
 
     @FXML
     private AnchorPane CrearPartePane;

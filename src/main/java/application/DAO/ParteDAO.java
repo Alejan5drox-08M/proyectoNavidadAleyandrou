@@ -1,9 +1,8 @@
 package application.DAO;
 
-import application.Conexion.Conexion;
 import application.Model.*;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ParteDAO extends ConexionDAO {
         Alumnos alumno = null;
         try {
             session.beginTransaction();
-            alumno = session.createQuery("from Alumnos where numero_expediente:numero_expediente", Alumnos.class)
+            alumno = session.createQuery("from Alumnos where numero_expediente=:numero_expediente", Alumnos.class)
                     .setParameter("numero_expediente", expediente).stream().findFirst().orElse(null);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -37,9 +36,10 @@ public class ParteDAO extends ConexionDAO {
         List<Partes_incidencia> partesIncidencias = new ArrayList<>();
         try {
             session.beginTransaction();
-            partesIncidencias = session.createQuery("from Partes_incidencia where alumno_id:=alumno_id", Partes_incidencia.class)
+            partesIncidencias = session.createQuery("from Partes_incidencia where id_alum=:alumno_id", Partes_incidencia.class)
                     .setParameter("alumno_id", alumno)
                     .stream().toList();
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -48,12 +48,23 @@ public class ParteDAO extends ConexionDAO {
         return partesIncidencias;
     }
 
-    public void insertarParte(Alumnos alumno, Profesores profesor, LocalDate fecha, String hora, String descripcion) {
-
+    public Boolean insertarParte(Partes_incidencia parte) {
+        boolean annadido = false;
+        try {
+            session.beginTransaction();
+            session.save(parte);
+            session.getTransaction().commit();
+            annadido = true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+        return annadido;
     }
 
     public List<Partes_incidencia> listarPartes() {
-        List<Partes_incidencia> partesIncidencias = new ArrayList<>();
+        List<Partes_incidencia> partesIncidencias =new ArrayList<>();
         try {
             session.beginTransaction();
             partesIncidencias = session.createQuery("from Partes_incidencia", Partes_incidencia.class)
@@ -66,28 +77,28 @@ public class ParteDAO extends ConexionDAO {
         return partesIncidencias;
     }
 
-    public List<Partes_incidencia> buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
-        List<Partes_incidencia> listaPartes = listarPartes();
+    public Set<Partes_incidencia> buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
+        List<Partes_incidencia> listaPartes = listarPartes().stream().toList();
         if (fechaEmpieza == null) {
             return listaPartes.stream()
                     .filter(partesIncidencia ->
                             partesIncidencia.getFecha().isBefore(fechaAcaba))
-                    .toList();
+                    .collect(Collectors.toSet());
         }
         if (fechaAcaba == null) {
             return listaPartes.stream()
                     .filter(partesIncidencia ->
-                            partesIncidencia.getFecha().isAfter(fechaEmpieza)).toList();
+                            partesIncidencia.getFecha().isAfter(fechaEmpieza))
+                    .collect(Collectors.toSet());
         }
         return listaPartes.stream()
                 .filter(partesIncidencia ->
                         partesIncidencia.getFecha().isAfter(fechaEmpieza) &&
                                 partesIncidencia.getFecha().isBefore(fechaAcaba))
-                .toList();
+                .collect(Collectors.toSet());
     }
-
     //aqui consigo las 3 puntuaciones
-    public List<Puntuacion_partes> getPuntuaciones() {
+    public List<Puntuacion_partes> getPuntuaciones(){
         List<Puntuacion_partes> puntuaciones = new ArrayList<>();
         try {
             session.beginTransaction();
