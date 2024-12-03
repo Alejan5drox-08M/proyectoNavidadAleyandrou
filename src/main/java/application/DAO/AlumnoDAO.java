@@ -25,4 +25,20 @@ public class AlumnoDAO extends ConexionDAO {
         }
         return alumnos;
     }
+
+    public List<Alumnos> listarAlumnosByExp(String numero_expediente) {
+        List<Alumnos> alumnos = new ArrayList<>();
+        try {
+            session.beginTransaction();
+            alumnos = session.createQuery("from Alumnos where numero_expediente=:numero_expediente", Alumnos.class)
+                    .setParameter("numero_expediente", numero_expediente)
+                    .stream().toList();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+        return alumnos;
+    }
 }
