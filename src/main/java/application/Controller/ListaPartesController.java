@@ -61,13 +61,9 @@ public class ListaPartesController extends SuperController {
     private AnchorPane fondoParte;
 
     ParteDAO parteDAO = new ParteDAO();
-    Partes_incidencia[] partes;
+    Partes_incidencia[] partes; //??
     Alumnos alumno;
     Partes_incidencia parte = new Partes_incidencia();
-
-    private ObservableList<Partes_incidencia> partesList;
-
-    VistaParteController controller;
 
     @FXML
     void initialize() {

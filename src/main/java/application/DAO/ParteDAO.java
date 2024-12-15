@@ -55,6 +55,7 @@ public class ParteDAO extends ConexionDAO {
             session.beginTransaction();
             session.save(parte);
             session.getTransaction().commit();
+            modificarAlumno(parte.getId_alum());
             annadido = true;
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -158,11 +159,33 @@ public class ParteDAO extends ConexionDAO {
             session.beginTransaction();
             session.delete(parte);
             session.getTransaction().commit();
+            modificarAlumno(parte.getId_alum());
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
             session.clear();
         }
+    }
+
+    public boolean modificarParte(Partes_incidencia parte) {
+        boolean modificado = false;
+        try {
+            session.beginTransaction();
+            session.update(parte);
+            session.getTransaction().commit();
+            modificarAlumno(parte.getId_alum());
+            modificado = true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+        return modificado;
+    }
+
+    public void modificarAlumno(Alumnos alumno) {
+        AlumnoDAO dao = new AlumnoDAO();
+        dao.modificarAlumno(alumno);
     }
 
 }

@@ -72,12 +72,13 @@
       <DatePicker fx:id="FechaPicker" layoutX="174.0" layoutY="264.0" prefHeight="25.0" prefWidth="263.0" promptText="dd/mm/aaaa" />
       <Label layoutX="524.0" layoutY="268.0" text="Hora:" />
       <ComboBox fx:id="HoraCombo" layoutX="590.0" layoutY="264.0" prefHeight="25.0" prefWidth="219.0" promptText="Selecciona la Hora de la Clase" style="-fx-background-color: white;" />
-      <Button layoutX="453.0" layoutY="574.0" mnemonicParsing="false" onAction="#OnCrearClic" style="-fx-background-color: #4ba0ce;" text="Crear" textFill="WHITE" />
+      <Button fx:id="CrearButton" layoutX="453.0" layoutY="574.0" mnemonicParsing="false" onAction="#OnCrearClic" style="-fx-background-color: #4ba0ce;" text="Crear" textFill="WHITE" />
       <Button layoutX="39.0" layoutY="574.0" mnemonicParsing="false" onAction="#OnVolverClic" style="-fx-background-color: #9bc1bc;" text="⬅  Volver" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <TextField fx:id="GrupoText" editable="false" layoutX="661.0" layoutY="133.0" prefHeight="25.0" prefWidth="212.0" promptText="'Tab' o 'Intro' para rellenar" />
+      <Button fx:id="EditarButton" layoutX="452.0" layoutY="574.0" mnemonicParsing="false" onAction="#OnEditarClic" style="-fx-background-color: #4ba0ce;" text="Editar" textFill="WHITE" visible="false" />
    </children>
 </AnchorPane>

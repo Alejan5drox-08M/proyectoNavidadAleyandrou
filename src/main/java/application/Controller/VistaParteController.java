@@ -1,7 +1,6 @@
 package application.Controller;
 
 import application.DAO.ParteDAO;
-import application.DAO.ProfesorDAO;
 import application.Model.Partes_incidencia;
 import application.Utils.CambioEscenas;
 import application.Utils.ParsearFecha;
@@ -62,8 +61,6 @@ public class VistaParteController extends SuperController implements Initializab
 
     ParteDAO parteDAO = new ParteDAO();
 
-    ProfesorDAO profesorDAO = new ProfesorDAO();
-
     Partes_incidencia parte1;
 
     public void OnVolverClic(ActionEvent actionEvent) throws IOException {
@@ -77,13 +74,13 @@ public class VistaParteController extends SuperController implements Initializab
     }
 
     public void OnEditarClic(ActionEvent actionEvent) throws IOException {
+        alumno = parte.getId_alum();
         CambioEscenas.cambioEscena("CrearParte.fxml", FondoParte);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         parte1 = getParte();
-
         NombreAlumnoText.setText(parte1.getId_alum().getNombre_alum());
         GrupoText.setText(parte1.getId_alum().getId_grupo().getNombre_grupo());
         NombreProfeText.setText(parte1.getId_profesor().getNombre());
