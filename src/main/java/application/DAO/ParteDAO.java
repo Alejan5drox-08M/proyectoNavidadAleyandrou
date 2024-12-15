@@ -3,6 +3,7 @@ package application.DAO;
 import application.Model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class ParteDAO extends ConexionDAO {
     private final Session session = getSession();
 
 
-    public Alumnos buscarAlumnoByExp(int expediente) {
+    public Alumnos buscarAlumnoByExp(String expediente) {
         Alumnos alumno = null;
         try {
             session.beginTransaction();
@@ -64,7 +65,7 @@ public class ParteDAO extends ConexionDAO {
     }
 
     public List<Partes_incidencia> listarPartes() {
-        List<Partes_incidencia> partesIncidencias =new ArrayList<>();
+        List<Partes_incidencia> partesIncidencias = new ArrayList<>();
         try {
             session.beginTransaction();
             partesIncidencias = session.createQuery("from Partes_incidencia", Partes_incidencia.class)
@@ -77,28 +78,34 @@ public class ParteDAO extends ConexionDAO {
         return partesIncidencias;
     }
 
-    public Set<Partes_incidencia> buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
-        List<Partes_incidencia> listaPartes = listarPartes().stream().toList();
+    public Partes_incidencia[] buscarPorFecha(LocalDate fechaEmpieza, LocalDate fechaAcaba) {
+        List<Partes_incidencia> listaPartes = listarPartes();
         if (fechaEmpieza == null) {
-            return listaPartes.stream()
+            listaPartes = listaPartes.stream()
                     .filter(partesIncidencia ->
                             partesIncidencia.getFecha().isBefore(fechaAcaba))
-                    .collect(Collectors.toSet());
+                    .toList();
         }
         if (fechaAcaba == null) {
-            return listaPartes.stream()
+            listaPartes = listaPartes.stream()
                     .filter(partesIncidencia ->
                             partesIncidencia.getFecha().isAfter(fechaEmpieza))
-                    .collect(Collectors.toSet());
+                    .toList();
         }
-        return listaPartes.stream()
-                .filter(partesIncidencia ->
-                        partesIncidencia.getFecha().isAfter(fechaEmpieza) &&
-                                partesIncidencia.getFecha().isBefore(fechaAcaba))
-                .collect(Collectors.toSet());
+        if (fechaAcaba != null && fechaEmpieza != null) {
+            listaPartes = listaPartes.stream()
+                    .filter(partesIncidencia ->
+                            partesIncidencia.getFecha().isAfter(fechaEmpieza) &&
+                                    partesIncidencia.getFecha().isBefore(fechaAcaba))
+                    .toList();
+
+        }
+        return listaPartes.toArray(new Partes_incidencia[0]);
+
     }
+
     //aqui consigo las 3 puntuaciones
-    public List<Puntuacion_partes> getPuntuaciones(){
+    public List<Puntuacion_partes> getPuntuaciones() {
         List<Puntuacion_partes> puntuaciones = new ArrayList<>();
         try {
             session.beginTransaction();
@@ -111,4 +118,51 @@ public class ParteDAO extends ConexionDAO {
         }
         return puntuaciones;
     }
+
+    public Partes_incidencia[] buscarPartes() {
+        List<Partes_incidencia> partesList = null;
+
+        try {
+            session.beginTransaction();
+            partesList = session.createQuery("from Partes_incidencia", Partes_incidencia.class).list();
+            session.beginTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+
+        } finally {
+            session.close();
+        }
+
+        return partesList != null ? partesList.toArray(new Partes_incidencia[0]) : new Partes_incidencia[0];
+    }
+
+    public Partes_incidencia[] buscarPartesPorId(Alumnos alumno) {
+        List<Partes_incidencia> partesList = null;
+
+        try {
+            session.beginTransaction();
+            partesList = session.createQuery("from Partes_incidencia where id_alum=:id_alum", Partes_incidencia.class)
+                    .setParameter("id_alum", alumno).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return partesList != null ? partesList.toArray(new Partes_incidencia[0]) : new Partes_incidencia[0];
+    }
+
+    public void eliminarParte(Partes_incidencia parte) {
+        try {
+            session.beginTransaction();
+            session.delete(parte);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+        }
+    }
+
 }

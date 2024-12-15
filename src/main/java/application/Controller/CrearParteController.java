@@ -90,7 +90,7 @@ public class CrearParteController extends SuperController implements Initializab
             } else {
                 sancion = ComboSancion.getValue().toString();
             }
-            Partes_incidencia parte = new Partes_incidencia(alumno1, alumno1.getId_grupo(), profesor, FechaPicker.getValue(), HoraCombo.getValue().toString(), DescripcionText.getText(), sancion);
+            Partes_incidencia parte = new Partes_incidencia(alumno1, alumno1.getId_grupo(), profesor, FechaPicker.getValue(), HoraCombo.getValue().toString(), DescripcionText.getText(), sancion, puntos);
             if (parteDAO.insertarParte(parte)) {
                 AlertUtils.mostrarConfirmacion("Parte creado");
                 vaciarCampos();
@@ -168,7 +168,7 @@ public class CrearParteController extends SuperController implements Initializab
     public void OnKeyPressed(KeyEvent keyEvent) {
         String teclaPulsada = keyEvent.getCode().toString();
         if (teclaPulsada.equals("TAB") || teclaPulsada.equals("ENTER")) {
-            alumno1 = parteDAO.buscarAlumnoByExp(Integer.parseInt(NumExpedienteAlumnoText.getText()));
+            alumno1 = parteDAO.buscarAlumnoByExp(NumExpedienteAlumnoText.getText());
             if (alumno1 != null) {
                 grupo1 = alumno1.getId_grupo();
                 GrupoText.setText(grupo1.getNombre_grupo());

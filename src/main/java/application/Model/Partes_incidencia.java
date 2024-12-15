@@ -60,6 +60,9 @@ public class Partes_incidencia {
     @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")
     private Profesores id_profesor;
 
+    @Column(name = "puntos")
+    private int puntos;
+
     @Column(name = "descripcion")
     private String descripcion;
 
@@ -75,7 +78,7 @@ public class Partes_incidencia {
     public Partes_incidencia() {
     }
 
-    public Partes_incidencia(Alumnos id_alum, Grupos id_grupo, Profesores id_profesor, LocalDate fecha, String hora, String descripcion, String sancion) {
+    public Partes_incidencia(Alumnos id_alum, Grupos id_grupo, Profesores id_profesor, LocalDate fecha, String hora, String descripcion, String sancion, int puntos) {
         this.id_alum = id_alum;
         this.id_grupo = id_grupo;
         this.id_profesor = id_profesor;
@@ -83,6 +86,7 @@ public class Partes_incidencia {
         this.fecha = fecha;
         this.hora = hora;
         this.sancion = sancion;
+        this.puntos = puntos;
     }
 
     public int getId_parte() {
@@ -147,6 +151,14 @@ public class Partes_incidencia {
 
     public void setSancion(String sancion) {
         this.sancion = sancion;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 
     @Override

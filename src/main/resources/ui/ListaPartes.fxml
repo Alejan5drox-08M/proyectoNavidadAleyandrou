@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fondoParte" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.ListaPartesController">
+<AnchorPane fx:id="fondoParte" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="949.0" style="-fx-background-color: #949494;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.ListaPartesController">
    <children>
       <ImageView fitHeight="613.0" fitWidth="613.0" layoutX="168.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,7 +33,7 @@
                </font>
             </Label>
             <Separator layoutX="32.0" layoutY="51.0" prefHeight="5.0" prefWidth="566.0" />
-            <TextField fx:id="BuscarNumeroExpediente" layoutX="32.0" layoutY="66.0" prefHeight="25.0" prefWidth="566.0" promptText="Buscar por Número de expediente" />
+            <TextField fx:id="BuscarNumeroExpediente" layoutX="32.0" layoutY="66.0" onKeyPressed="#OnNumeroPressed" prefHeight="25.0" prefWidth="566.0" promptText="Buscar por Número de expediente" />
             <Button layoutX="547.0" layoutY="66.0" mnemonicParsing="false" onAction="#OnBuscarNumeroClic" style="-fx-background-color: #198754;" text="Buscar" textFill="WHITE" />
             <Button layoutX="494.0" layoutY="101.0" mnemonicParsing="false" onAction="#OnBuscarFechaClic" style="-fx-background-color: #198754;" text="Buscar por Fecha" textFill="WHITE" />
             <DatePicker fx:id="FechaInicio" layoutX="32.0" layoutY="101.0" prefHeight="25.0" prefWidth="231.0" promptText="Fecha inicio" />
@@ -42,7 +42,9 @@
       </AnchorPane>
       <AnchorPane layoutX="69.0" layoutY="191.0" prefHeight="374.0" prefWidth="812.0" style="-fx-background-color: #72CAE8;">
          <children>
-            <TableView fx:id="LaTabla" layoutX="18.0" layoutY="14.0" onMouseClicked="#OnMouseClic" prefHeight="302.0" prefWidth="777.0">
+            <!-- Control de paginación -->
+            <Pagination fx:id="pagination" layoutX="19.0" layoutY="12.0" prefHeight="362.0" prefWidth="779.0" stylesheets="/recurso/estilo.css" />
+            <TableView fx:id="LaTabla" fixedCellSize="40.0" layoutX="18.0" layoutY="14.0" onMouseClicked="#OnMouseClic" prefHeight="300.0" prefWidth="779.0">
                <columns>
                   <TableColumn fx:id="ExpedienteColumn" minWidth="111.0" prefWidth="111.0" text="Expediente" />
                   <TableColumn fx:id="NombreAlumnoColumn" minWidth="111.0" prefWidth="111.0" text="Nombre Alumno" />
@@ -53,8 +55,6 @@
                   <TableColumn fx:id="SancionColumn" minWidth="111.0" prefWidth="111.0" text="Sanción" />
                </columns>
             </TableView>
-            <!-- Control de paginación -->
-            <Pagination fx:id="pagination" layoutX="18.0" layoutY="316.0" prefHeight="45.0" prefWidth="777.0" />
          </children>
       </AnchorPane>
    </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,70 +22,90 @@
                <children>
                   <Pane layoutX="351.0" prefHeight="25.0" prefWidth="168.0" style="-fx-border-color: black;">
                      <children>
-                        <Label fx:id="GrupoText" layoutX="70.0" layoutY="2.0" text="Grupo">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="6.0" layoutY="2.0" text="GRUPO:">
+                        <HBox layoutX="8.0" layoutY="2.0" prefHeight="21.0" prefWidth="160.0">
+                           <children>
+                              <Label text="GRUPO: " textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="GrupoText" text="Grupo">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <HBox layoutX="8.0" layoutY="2.0" prefHeight="21.0" prefWidth="342.0">
+                     <children>
+                        <Label text="ALUMNO: ">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
+                        <Label fx:id="NombreAlumnoText" text="Nombre del Alumno">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </Pane>
-                  <Label fx:id="NombreAlumnoText" layoutX="83.0" layoutY="2.0" text="Nombre del Alumno">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="6.0" layoutY="2.0" text="ALUMNO:">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
+                  </HBox>
                </children>
             </Pane>
             <Pane layoutY="24.0" prefHeight="25.0" prefWidth="519.0" style="-fx-border-color: black;">
                <children>
-                  <Label fx:id="NombreProfeText" layoutX="202.0" layoutY="2.0" text="Nombre del Profesor">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="7.0" layoutY="2.0" text="PROFESOR QUE INFORMA:">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
+                  <HBox layoutX="8.0" layoutY="2.0" prefHeight="21.0" prefWidth="510.0">
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="194.0" text="PROFESOR QUE INFORMA: ">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NombreProfeText" text="Nombre del Profesor">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
             <Pane layoutY="48.0" prefHeight="25.0" prefWidth="519.0" style="-fx-border-color: black;">
                <children>
                   <Pane layoutX="351.0" prefHeight="25.0" prefWidth="168.0" style="-fx-border-color: black;">
                      <children>
-                        <Label fx:id="HoraText" layoutX="61.0" layoutY="2.0" text="Hora del Parte">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="7.0" layoutY="2.0" text="HORA:">
+                        <HBox layoutX="8.0" layoutY="2.0" prefHeight="21.0" prefWidth="160.0">
+                           <children>
+                              <Label text="HORA: ">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="HoraText" text="Hora del Parte">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <HBox layoutX="8.0" layoutY="2.0" prefHeight="21.0" prefWidth="342.0">
+                     <children>
+                        <Label text="FECHA: ">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
+                        <Label fx:id="FechaText" text="Fecha del Parte">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </Pane>
-                  <Label fx:id="FechaText" layoutX="66.0" layoutY="2.0" text="Fecha del Parte">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="11.0" layoutY="2.0" text="FECHA:">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
+                  </HBox>
                </children>
             </Pane>
          </children>
@@ -118,7 +139,7 @@
             <Label fx:id="SancionText" alignment="TOP_LEFT" layoutX="14.0" layoutY="7.0" prefHeight="172.0" prefWidth="492.0" text="Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar, Hola muuuuuuuucho mucho mucho mucho texto sin sentido alguno solo para rellenar" wrapText="true" />
          </children>
       </Pane>
-      <HBox layoutX="160.0" layoutY="763.0" prefHeight="25.0" prefWidth="283.0">
+      <HBox layoutX="171.0" layoutY="764.0" prefHeight="25.0" prefWidth="283.0">
          <children>
             <Label text="En Valladolid a ">
                <font>
@@ -152,15 +173,39 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="265.0" layoutY="801.0" text="El profesor">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="90.0" fitWidth="71.0" layoutX="489.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
+      <Button layoutX="14.0" layoutY="810.0" mnemonicParsing="false" onAction="#OnVolverClic" style="-fx-background-color: #9bc1bc;" text="⬅  Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <HBox layoutX="188.0" layoutY="798.0" prefHeight="25.0" prefWidth="227.0">
+         <children>
+            <Label text="El profesor ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="NombreProfeText2" text="Nombre del Profesor">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button layoutX="462.0" layoutY="797.0" mnemonicParsing="false" onAction="#OnEliminarClic" style="-fx-background-color: #ff1744; -fx-border-color: #b50000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Eliminar Parte" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="475.0" layoutY="763.0" mnemonicParsing="false" onAction="#OnEditarClic" style="-fx-background-color: #1a8ae5; -fx-border-color: #0747a1; -fx-border-radius: 5; -fx-background-radius: 5;" text="Editar Parte" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
